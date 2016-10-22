@@ -1,4 +1,4 @@
-# calc-as-a-service
+# Calculator as a Service
 
 There is one endpoint, '/caas'. There are 3 required parameters: x, y, and op. Here's an example API call.
 
