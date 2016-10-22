@@ -23,13 +23,13 @@ def calc_endpoint():
     y = request.args.get('y')
     op = request.args.get('op')
     if x is None or y is None or op is None:
-        return json.dumps({'error': 'Missing an operand or operator.'}), 404
+        return json.dumps({'error': 'Missing an operand or operator.'}), 500
     try:
         result = calculate(float(x), float(y), op)
     except ValueError as e:
-        return json.dumps({'error': 'Operand must be a number.'})
+        return json.dumps({'error': 'Operand must be a number.'}), 500
     if result is None:
-        return json.dumps({'error': 'Invalid operator'}), 404
+        return json.dumps({'error': 'Invalid operator'}), 500
     return json.dumps({'result': result})
 
 
