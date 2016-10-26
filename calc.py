@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import request
 import json
+import logging
+from logging.handlers import RotatingFileHandler
 
 app = Flask(__name__)
 
@@ -34,6 +36,11 @@ def calc_endpoint():
 
 
 def main():
+    handler = RotatingFileHandler('logs/caas.log', maxBytes=1024*10, backupCount=10)
+    handler.setLevel(logging.INFO)
+    log = logging.getLogger('werkzeug')
+    log.setLevel(logging.INFO)
+    log.addHandler(handler)
     app.run(host='0.0.0.0', debug=False)
 
 if __name__ == '__main__':
